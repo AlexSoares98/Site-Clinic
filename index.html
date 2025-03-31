@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic - Sistema para Gestão de Clínicas e Hospitais</title>
+    
+    <!-- Meta tags de segurança -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="strict-origin">
+    <meta name="csrf-token" content="TOKEN_GERADO_PELO_BACKEND">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="Imagens/logo-clinic.webp" alt="Logo CLINIC">
+                <span class="logo-text">CLINIC</span>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#quem-somos">Quem Somos</a></li>
+                    <li><a href="#sistema">Sistema</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                    <li><a href="#acesso-cliente">Acesso Cliente</a></li>
+                    <li><a href="#atualizacoes">Atualizações</a></li>
+                    <li><a href="#ajuda">Ajuda</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Sistema para Gestão<br>de Clínicas e Hospitais</h1>
+            <p>Um sistema completo para a gestão do segmento<br>de saúde e jornada do paciente</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">Entre em contato</button>
+                <button class="btn btn-secondary">Conheça os sistemas</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="recursos">
+        <div class="recursos-container">
+            <div class="recursos-grid">
+                <div class="recurso-card" data-recurso="agenda">
+                    <img src="Imagens/icone-agenda-web.webp" alt="Agenda Web">
+                    <span class="card-divider"></span>
+                    <h3>Agenda Web Integrada</h3>
+                </div>
+                <div class="recurso-card" data-active="false">
+                    <img src="Imagens/icone-aplicativo-clinic.webp" alt="App Jornada">
+                    <span class="card-divider"></span>
+                    <h3>App jornada do paciente</h3>
+                </div>
+                <div class="recurso-card" data-active="false">
+                    <img src="Imagens/icone-cerficado-digital.webp" alt="Certificação Digital">
+                    <span class="card-divider"></span>
+                    <h3>Certificação Digital</h3>
+                </div>
+                <div class="recurso-card" data-active="false">
+                    <img src="Imagens/icone-nota-fiscal.webp" alt="Nota Fiscal">
+                    <span class="card-divider"></span>
+                    <h3>Nota fiscal eletrônica - RPS</h3>
+                </div>
+                <div class="recurso-card" data-active="false">
+                    <img src="Imagens/icone-totem.webp" alt="Totem">
+                    <span class="card-divider"></span>
+                    <h3>TOTEM de autoatendimento</h3>
+                </div>
+                <div class="recurso-card" data-active="false">
+                    <img src="Imagens/icone-raio-x.webp" alt="DICOM">
+                    <span class="card-divider"></span>
+                    <h3>Integração DICOM</h3>
+                </div>
+                <div class="recurso-card" data-active="false">
+                    <img src="Imagens/icone-monitor.webp" alt="Painel de Chamada">
+                    <span class="card-divider"></span>
+                    <h3>Painel de chamada</h3>
+                </div>
+                <div class="recurso-card" data-active="false">
+                    <img src="Imagens/icone-tea-tdah.webp" alt="TEA/TDAH">
+                    <span class="card-divider"></span>
+                    <h3>Empresa Amiga TEA/TDAH</h3>
+                </div>
+                <div class="recurso-card" data-active="false">
+                    <img src="Imagens/logo-whats-app.webp" alt="WhatsApp">
+                    <span class="card-divider"></span>
+                    <h3>Confirmação via Whatsapp</h3>
+                </div>
+            </div>
+            
+            <div class="recurso-content" id="agenda-content">
+                <h2>Agenda web integrada</h2>
+                <p>
+                    <span class="highlight">Ganhe tempo para seu paciente – simplifique!</span><br/>
+                    <span class="secondary"> </span>
+                    <span class="primary">Com nossa parceria com a</span>
+                    <span class="secondary"> </span>
+                    <span class="highlight">CONECTADOC</span>
+                    <span class="primary">,</span>
+                    <span class="secondary"> </span>
+                    <span class="primary">o</span>
+                    <span class="secondary"> </span>
+                    <span class="highlight">Sistema CLINIC</span>
+                    <span class="secondary"> </span>
+                    <span class="primary">se integra ao seu site em tempo real, permitindo que seus pacientes agendem consultas online, a qualquer hora.</span><br/><br/>
+                    <span class="primary">Sem necessidade de desenvolvimento ou alterações no site!</span><br/>
+                    <span class="primary">Os horários disponíveis no sistema serão exibidos automaticamente, considerando cada profissional e as regras de cada convênio.</span><br/><br/>
+                    <span class="primary">Com essa ferramenta, seus pacientes podem agendar consultas de qualquer dispositivo, eliminando a necessidade de telefonia e operadores.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="experiencia">
+        <div class="experiencia-container">
+            <div class="experiencia-content">
+                <div class="experiencia-text">
+                    <div class="experiencia-text-container">
+                        <div class="experiencia-title-container">
+                            <h2>Experiência</h2>
+                        </div>
+                        <p>Com 30 anos de experiência no mercado, a CLINIC Tecnologia e Inovação em Saúde se consolidou no mercado, entregando soluções em sistemas para clínicas e hospitais.</p>
+                        <p>Nossos produtos oferecem mais qualidade no atendimento, mais agilidade no faturamento e mais resultados na gestão financeira!</p>
+                        <p>Não entregue a gestão de sua empresa, a quem você não conhece.</p>
+                        <p>Está na hora de ter controle de sua empresa!</p>
+                    </div>
+                </div>
+                <div class="experiencia-image">
+                    <img src="Imagens/ilustracao-doutor.webp" alt="Ilustração Doutor">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Números -->
+    <section class="numeros">
+        <div class="numeros-container">
+            <div class="numeros-title">
+                <h2>Conheça nossos números</h2>
+            </div>
+            <div class="numeros-content">
+                <div class="numero-item">
+                    <div class="numero">31</div>
+                    <div class="numero-titulo">Anos de mercado</div>
+                </div>
+                <div class="numero-item">
+                    <div class="numero">293</div>
+                    <div class="numero-titulo">Clientes</div>
+                </div>
+                <div class="numero-item">
+                    <div class="numero">6500</div>
+                    <div class="numero-titulo">Usuários</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Contato -->
+    <section class="contato">
+        <div class="contato-container">
+            <div class="contato-content">
+                <div class="contato-text">
+                    <h2><span class="white">Entre em </span><span class="highlight">Contato</span></h2>
+                    <p>Agende uma demonstração e descubra nossas soluções para consultórios, clínicas e hospitais. Oferecemos ferramentas para otimizar processos, simplificar operações e garantir resultados eficientes.</p>
+                </div>
+                <form class="contato-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Nome">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Telefone">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Assunto">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Mensagem"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Enviar formulário</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="Imagens/logo-clinic.webp" alt="CLINIC Logo">
+                <h3>CLINIC</h3>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Início</h4>
+                    <ul>
+                        <li><a href="#">Sobre nós</a></li>
+                        <li><a href="#">Serviços</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Política de privacidade</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <h4>Contate-nos</h4>
+                <button class="btn btn-primary">
+                    <span class="icon"></span>
+                    <span class="white">Entre em </span><span class="highlight">Contato</span>
+                </button>
+            </div>
+            <div class="footer-copyright">
+                <p>Todos direitos reservados 2025 © CLINIC Tecnologia e Inovação em Saúde</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 
