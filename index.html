@@ -47,79 +47,234 @@
         </div>
     </section>
 
+    <!-- Seção de Recursos (Cards) -->
     <section class="recursos">
         <div class="recursos-container">
             <div class="recursos-grid">
-                <div class="recurso-card" data-recurso="agenda">
+                <div class="recurso-card" data-recurso="agenda" data-active="true">
                     <img src="Imagens/icone-agenda-web.webp" alt="Agenda Web">
                     <span class="card-divider"></span>
                     <h3>Agenda Web Integrada</h3>
                 </div>
-                <div class="recurso-card" data-active="false">
+                <div class="recurso-card" data-recurso="jornada">
                     <img src="Imagens/icone-aplicativo-clinic.webp" alt="App Jornada">
                     <span class="card-divider"></span>
                     <h3>App jornada do paciente</h3>
                 </div>
-                <div class="recurso-card" data-active="false">
+                <div class="recurso-card" data-recurso="certificacao">
                     <img src="Imagens/icone-cerficado-digital.webp" alt="Certificação Digital">
                     <span class="card-divider"></span>
                     <h3>Certificação Digital</h3>
                 </div>
-                <div class="recurso-card" data-active="false">
+                <div class="recurso-card" data-recurso="nota">
                     <img src="Imagens/icone-nota-fiscal.webp" alt="Nota Fiscal">
                     <span class="card-divider"></span>
                     <h3>Nota fiscal eletrônica - RPS</h3>
                 </div>
-                <div class="recurso-card" data-active="false">
+                <div class="recurso-card" data-recurso="totem">
                     <img src="Imagens/icone-totem.webp" alt="Totem">
                     <span class="card-divider"></span>
                     <h3>TOTEM de autoatendimento</h3>
                 </div>
-                <div class="recurso-card" data-active="false">
+                <div class="recurso-card" data-recurso="dicom">
                     <img src="Imagens/icone-raio-x.webp" alt="DICOM">
                     <span class="card-divider"></span>
                     <h3>Integração DICOM</h3>
                 </div>
-                <div class="recurso-card" data-active="false">
+                <div class="recurso-card" data-recurso="painel">
                     <img src="Imagens/icone-monitor.webp" alt="Painel de Chamada">
                     <span class="card-divider"></span>
                     <h3>Painel de chamada</h3>
                 </div>
-                <div class="recurso-card" data-active="false">
+                <div class="recurso-card" data-recurso="tea">
                     <img src="Imagens/icone-tea-tdah.webp" alt="TEA/TDAH">
                     <span class="card-divider"></span>
                     <h3>Empresa Amiga TEA/TDAH</h3>
                 </div>
-                <div class="recurso-card" data-active="false">
+                <div class="recurso-card" data-recurso="whatsapp">
                     <img src="Imagens/logo-whats-app.webp" alt="WhatsApp">
                     <span class="card-divider"></span>
                     <h3>Confirmação via Whatsapp</h3>
                 </div>
             </div>
             
-            <div class="recurso-content" id="agenda-content">
+            <div class="recurso-content active" id="agenda-content">
                 <h2>Agenda web integrada</h2>
                 <p>
                     <span class="highlight">Ganhe tempo para seu paciente – simplifique!</span><br/>
-                    <span class="secondary"> </span>
                     <span class="primary">Com nossa parceria com a</span>
-                    <span class="secondary"> </span>
                     <span class="highlight">CONECTADOC</span>
-                    <span class="primary">,</span>
-                    <span class="secondary"> </span>
-                    <span class="primary">o</span>
-                    <span class="secondary"> </span>
+                    <span class="primary">, o</span>
                     <span class="highlight">Sistema CLINIC</span>
-                    <span class="secondary"> </span>
                     <span class="primary">se integra ao seu site em tempo real, permitindo que seus pacientes agendem consultas online, a qualquer hora.</span><br/><br/>
                     <span class="primary">Sem necessidade de desenvolvimento ou alterações no site!</span><br/>
                     <span class="primary">Os horários disponíveis no sistema serão exibidos automaticamente, considerando cada profissional e as regras de cada convênio.</span><br/><br/>
                     <span class="primary">Com essa ferramenta, seus pacientes podem agendar consultas de qualquer dispositivo, eliminando a necessidade de telefonia e operadores.</span>
                 </p>
             </div>
+
+            <div class="recurso-content" id="jornada-content">
+                <h2>Laudos de exames no site e app jornada do paciente</h2>
+                <p>
+                    <span class="highlight">Que tal todos seus laudos de exames e as imagens disponíveis em tempo real num app e também no seu site?</span><br/><br/>
+                    <span class="primary">Sem precisar de desenvolvimento, você pode trazer modernidade para seus atendimentos, além de ganhar tempo e comodidades aos pacientes.</span><br/><br/>
+                    <span class="primary">Venha conversar conosco e descubra como podemos transformar a experiência dos seus pacientes.</span>
+                </p>
+            </div>
+
+            <div class="recurso-content" id="certificacao-content">
+                <h2>Certificação Digital</h2>
+                <p>
+                    <span class="highlight">SEGURANÇA ACIMA DE TUDO</span><br/><br/>
+                    <span class="primary">Nossos produtos possuem Certificação Digital, utilizando ICP-BRASIL e garantindo dessa forma a segurança, integridade e adequação legal aos registros de saúde, de acordo com a legislação em vigor.</span><br/><br/>
+                    <span class="primary">A Certificação Digital oferece a segurança tanto para a área médica, como para todos os profissionais de saúde envolvidos na documentação dos registros de saúde.</span><br/><br/>
+                    <span class="primary">Nosso prontuário permite a isenção do registro em papel e emissão de todos os impressos com assinatura digital, além também os login's certificados do sistema.</span>
+                </p>
+            </div>
+
+            <div class="recurso-content" id="nota-content">
+                <h2>Nota fiscal eletrônica - RPS</h2>
+                <p>
+                    <span class="highlight">Emissão da nota fiscal na tela do atendimento</span><br/><br/>
+                    <span class="primary">O Sistema CLINIC permite a emissão de NOTA FISCAL diretamente do atendimento, tornando o processo mais seguro, e sobretudo RÁPIDO e ágil.</span><br/><br/>
+                    <span class="primary">Através de um click, a nota já é emitida e sem a necessidade do operador acessar o site da prefeitura, garantindo assim um controle de acesso seguro.</span><br/><br/>
+                    <span class="primary">O sistema também envia a nota emitida no e-mail do paciente.</span><br/>
+                    <span class="primary">Além de CURITIBA, ARAUCÁRIA e outros, temos vários municípios integrados.</span>
+                </p>
+            </div>
+
+            <div class="recurso-content" id="totem-content">
+                <h2>TOTEM de autoatendimento</h2>
+                <p>
+                    <span class="highlight">Atendimento ágil e moderno. Nosso TOTEM de autoatendimento é um sucesso!</span><br/><br/>
+                    <span class="primary">Ele é integrado ao sistema CLINIC, oferecendo um controle total de chegada dos pacientes, priorização de atendimentos (atende à legislação) e ordem de chegada.</span><br/><br/>
+                    <span class="primary">A chamada é automatizada e com opção por robô de voz.</span><br/>
+                    <span class="primary">E possui um recurso de IA que identifica e automatiza reconsultas.</span>
+                </p>
+            </div>
+
+            <div class="recurso-content" id="dicom-content">
+                <h2>Integração DICOM - Imagens digitais</h2>
+                <p>
+                    <span class="highlight">Sua clínica tem equipamentos de imagem digitais em DICOM?</span><br/><br/>
+                    <span class="primary">Temos a melhor solução de mini-PACS e integração com qualquer serviço externo.</span><br/><br/>
+                    <span class="primary">Obtenha as imagens diretamente no prontuário do paciente, com qualidade 4k, totalmente automatizada.</span>
+                </p>
+            </div>
+
+            <div class="recurso-content" id="painel-content">
+                <h2>Painel de chamada de paciente</h2>
+                <p>
+                    <span class="highlight">Com o nosso painel de chamada, personalizado, você pode chamar seus pacientes diretamente da agenda!</span><br/><br/>
+                    <span class="primary">Além de poder utilizá-lo também via TOTEM, suporta a chamada em setores e andares diferentes da clínica.</span><br/><br/>
+                    <span class="primary">Temos várias configurações e opções, consulte.</span>
+                </p>
+            </div>
+
+            <div class="recurso-content" id="tea-content">
+                <h2>Empresa Amiga TEA/TDAH</h2>
+                <p>
+                    <span class="highlight">RESPEITO, CIDADANIA, COMPROMISSO</span><br/><br/>
+                    <span class="primary">A CLINIC possui um sinalizador de pessoas com TEA, desde totem, agendamento, cadastro e prontuário.</span><br/><br/>
+                    <span class="primary">Compromisso com a cidadania e respeito à lei estadual 21.964/2004-PR.</span>
+                </p>
+            </div>
+
+            <div class="recurso-content" id="whatsapp-content">
+                <h2>Confirmação e Automatização via Whatsapp</h2>
+                <p>
+                    <span class="highlight">O Sistema CLINIC envia whatsapp personalizada com link para confirmação de consulta totalmente integrado.</span><br/><br/>
+                    <span class="primary">Você obtém as confirmações na tela de agendamento e consegue otimizar seus horários disponíveis da melhor forma.</span><br/><br/>
+                    <span class="primary">Nossa parceria com a empresa BOTDESIGNER oferece integração total da plataforma Whatsapp com o Sistema CLINIC.</span><br/><br/>
+                    <span class="primary">A marcação de exames é feita por robô, lendo os dados do paciente, horários livres e efetuando o agendamento.</span><br/><br/>
+                    <span class="primary">A confirmação de consultas e exames é automatizada com envio de mensagens em lote.</span>
+                </p>
+            </div>
         </div>
     </section>
 
+    <!-- Seção de Logos -->
+    <section class="logos-section">
+        <div class="logos-container">
+            <div class="logos-track">
+                <div class="logos-slide">
+                    <img src="Imagens/logo-clinica-harmonia.png" alt="Clínica Harmonia">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-cendi-cardio.png" alt="Cendi Cardio">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-ipraa.png" alt="IPRAA">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-clinica-de-olhos.png" alt="Clínica de Olhos">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-fisicor.png" alt="Fisicor">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-artro-ortopedia.png" alt="Artro Ortopedia">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-hospital-sao-lucas.png" alt="Hospital São Lucas">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-hospital-barigui.png" alt="Hospital Barigui">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-porto-seguro.png" alt="Porto Seguro">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-vitae.png" alt="Vitae">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-hospital-novo-mundo.png" alt="Hospital Novo Mundo">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-hospital-hotorrinos.png" alt="Hospital Hotorrino">
+                </div>
+                <!-- Duplicando as logos para criar o efeito infinito -->
+                <div class="logos-slide">
+                    <img src="Imagens/logo-clinica-harmonia.png" alt="Clínica Harmonia">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-cendi-cardio.png" alt="Cendi Cardio">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-ipraa.png" alt="IPRAA">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-clinica-de-olhos.png" alt="Clínica de Olhos">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-fisicor.png" alt="Fisicor">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-artro-ortopedia.png" alt="Artro Ortopedia">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-hospital-sao-lucas.png" alt="Hospital São Lucas">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-hospital-barigui.png" alt="Hospital Barigui">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-porto-seguro.png" alt="Porto Seguro">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-vitae.png" alt="Vitae">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-hospital-novo-mundo.png" alt="Hospital Novo Mundo">
+                </div>
+                <div class="logos-slide">
+                    <img src="Imagens/logo-hospital-hotorrinos.png" alt="Hospital Hotorrino">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Experiência -->
     <section class="experiencia">
         <div class="experiencia-container">
             <div class="experiencia-content">
@@ -198,34 +353,36 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-logo">
-                <img src="Imagens/logo-clinic.webp" alt="CLINIC Logo">
+                <img src="Imagens/logo-clinic.webp" alt="Logo CLINIC">
                 <h3>CLINIC</h3>
             </div>
             <div class="footer-links">
                 <div class="footer-col">
-                    <h4>Início</h4>
                     <ul>
-                        <li><a href="#">Sobre nós</a></li>
-                        <li><a href="#">Serviços</a></li>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#sobre">Sobre nós</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Contato</h4>
                     <ul>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Política de privacidade</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#privacidade">Política de privacidade</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-contact">
                 <h4>Contate-nos</h4>
-                <button class="btn btn-primary">
-                    <span class="icon"></span>
-                    <span class="white">Entre em </span><span class="highlight">Contato</span>
-                </button>
+                <a href="#contato" class="btn">
+                    <span>Entre em contato</span>
+                    <div class="icon">
+                        <div class="icon-inner"></div>
+                    </div>
+                </a>
             </div>
             <div class="footer-copyright">
-                <p>Todos direitos reservados 2025 © CLINIC Tecnologia e Inovação em Saúde</p>
+                Todos direitos reservados 2025 © CLINIC Tecnologia e Inovação em Saúde
             </div>
         </div>
     </footer>

@@ -3,9 +3,9 @@ function initHeader() {
     window.addEventListener('scroll', function() {
         const header = document.querySelector('.header');
         if (window.scrollY > 50) {
-            header.style.background = 'rgba(255, 255, 255, 0.1)';
+            header.classList.add('scrolled');
         } else {
-            header.style.background = 'transparent';
+            header.classList.remove('scrolled');
         }
     });
 }
@@ -55,16 +55,40 @@ function initRecursos() {
 // Função para animar os números
 function initNumeros() {
     const numeros = document.querySelectorAll('.numero');
+    const numerosContent = document.querySelector('.numeros-content');
+    const numerosTitle = document.querySelector('.numeros-title');
     
+    // Observador para o container dos números
+    const numerosObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                console.log('Container visível - adicionando slide-in');
+                numerosContent.classList.add('slide-in');
+                numerosTitle.classList.add('slide-in');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    });
+    
+    if (numerosContent) {
+        console.log('Iniciando observador do container');
+        numerosObserver.observe(numerosContent);
+    } else {
+        console.error('Container não encontrado');
+    }
+    
+    // Observador para os números individuais
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const numero = entry.target;
                 const valor = parseInt(numero.textContent);
                 let atual = 0;
-                const incremento = valor / 50;
-                const duracao = 2000; // 2 segundos
-                const intervalo = duracao / 50;
+                const incremento = valor / 200;
+                const duracao = 2000;
+                const intervalo = duracao / 200;
                 
                 const animacao = setInterval(() => {
                     atual += incremento;
@@ -177,6 +201,42 @@ function initContato() {
     });
 }
 
+// Função para controlar a rolagem das logos
+function initLogosScroll() {
+    const track = document.querySelector('.logos-track');
+    if (!track) return;
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let animationFrame;
+
+    track.addEventListener('mousedown', (e) => {
+        isDown = true;
+        track.style.animation = 'none';
+        startX = e.pageX - track.offsetLeft;
+        scrollLeft = track.scrollLeft;
+    });
+
+    track.addEventListener('mouseleave', () => {
+        isDown = false;
+        track.style.animation = 'slide 30s linear infinite';
+    });
+
+    track.addEventListener('mouseup', () => {
+        isDown = false;
+        track.style.animation = 'slide 30s linear infinite';
+    });
+
+    track.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - track.offsetLeft;
+        const walk = (x - startX) * 2;
+        track.style.transform = `translateY(-50%) translateX(${walk}px)`;
+    });
+}
+
 // Inicializa todas as funcionalidades
 document.addEventListener('DOMContentLoaded', () => {
     initHeader();
@@ -184,4 +244,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initRecursos();
     initNumeros();
     initContato();
+    initLogosScroll();
 }); 
