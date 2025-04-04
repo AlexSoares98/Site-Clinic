@@ -229,63 +229,78 @@ body {
     position: relative;
     z-index: 1;
     margin-top: 0;
+    padding-top: 100px;
 }
 
 .experiencia-container {
-    max-width: 1920px;
+    display: flex;
+    width: 1259px;
+    height: 417px;
+    padding: 47px 27px;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    border-top: 1.5px solid rgba(255, 255, 255, 0.80);
+    border-left: 1.5px solid rgba(255, 255, 255, 0.80);
+    background: #85add4;
+    box-shadow: 18px 18px 38px 0px rgba(0, 47, 97, 0.15), -18px -18px 25px 0px rgba(188, 219, 249, 0.23);
     margin: 0 auto;
-    width: 80%;
-    padding: 0 2.5vw;
     position: relative;
-    z-index: 1;
+    overflow: visible;
 }
 
-.experiencia-content {
-    display: flex;
-    align-items: center;
-    gap: 4rem;
-    flex-direction: row-reverse;
+.experiencia-image {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 480px;
+    height: 400px;
+    flex-shrink: 0;
+    overflow: visible;
+    opacity: 0.8;
+}
+
+.experiencia-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right bottom;
+    border-radius: 16px;
 }
 
 .experiencia-text {
     flex: 1;
+    padding-left: 500px;
+    color: rgba(255, 255, 255, 0.90);
+    padding-right: 20px;
     position: relative;
-}
-
-/* Container azul atrás do texto */
-.experiencia-text-container {
-    display: flex;
-    width: 735px;
-    padding: 40px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    border-radius: 15px;
-    border-bottom: 1px solid rgba(211, 211, 211, 0.80);
-    background: rgba(156, 190, 223, 0.80);
-    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.15);
-    position: relative;
-    margin-top: 30px;
+    z-index: 2;
 }
 
 /* Container do título */
 .experiencia-title-container {
     display: inline-flex;
-    padding: 16px 19px 16px 20px;
+    padding: 12px 24px;
     justify-content: center;
     align-items: center;
     border-radius: 8px;
     background: rgba(255, 158, 72, 0.80);
     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
     position: absolute;
-    top: -30px;
-    left: 20px;
+    left: 50%;
+    top: -75px;
+    transform: translateX(-50%);
+    gap: 10px;
+    z-index: 3;
+    height: 50px;
 }
 
 .experiencia-text h2 {
     color: rgba(255, 255, 255, 0.90);
     font-family: Poppins;
-    font-size: 40px;
+    font-size: 36px;
     font-style: normal;
     font-weight: 700;
     line-height: 100%; /* 40px */
@@ -304,17 +319,6 @@ body {
     padding-left: 20px;
 }
 
-.experiencia-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-.experiencia-image img {
-    max-width: 100%;
-    height: auto;
-}
-
 /* Seção de Logos */
 .logos-section {
     background: rgba(79, 140, 187, 0.80);
@@ -331,7 +335,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 20px;
-    padding: 20px 0;
+    padding: 12px 0;
 }
 
 .logos-section:active {
@@ -419,7 +423,7 @@ body {
     font-style: normal;
     font-weight: 700;
     line-height: 100%;
-    margin: -110px auto 150px;
+    margin: -80px auto 180px;
     z-index: 2;
     position: relative;
     width: 100%;
@@ -676,16 +680,19 @@ body {
     min-height: 300px;
 }
 
+
 .numeros-title {
     display: inline-flex;
     padding: 1.6vh 1.9vw;
     justify-content: center;
     align-items: center;
     border-radius: 0.8vh;
-    background: rgba(255, 158, 72, 0.80);
-    box-shadow: 0 0.2vh 0.2vh 0 rgba(0, 0, 0, 0.15);
+    border-top: 1px solid rgba(243, 243, 243, 0.70);
+    border-left: 1px solid rgba(243, 243, 243, 0.70);
+    background: rgba(255, 158, 72, 0.70);
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
     position: absolute;
-    top: -3vh;
+    top: -35px;
     left: 5vw;
     z-index: 3;
     transform: translateX(-100%);
@@ -704,11 +711,12 @@ body {
     font-family: Poppins;
     font-size: 4vh;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 100%;
     margin: 0;
     white-space: nowrap;
 }
+
 
 .numeros-content {
     width: 80vw;
@@ -716,13 +724,13 @@ body {
     flex-shrink: 0;
     margin-left: 8vw;
     border-radius: 0 20vh 20vh 0;
-    border-bottom: 0.1vh solid #E3E3E3;
-    background: radial-gradient(45.09% 45.09% at 54.91% 100%, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.00) 100%), rgba(156, 190, 223, 0.80);
-    box-shadow: 0 0.3vh 0.3vh 0 rgba(0, 0, 0, 0.15);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.80);
+    background: radial-gradient(45.09% 45.09% at 54.91% 100%, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.00) 100%), rgba(156, 190, 223, 0.35);
+    box-shadow: -14px -14px 28px 0px rgba(188, 219, 249, 0.12), 12px 12px 22px 0px rgba(0, 47, 97, 0.15);
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 4vw;
+    gap: 8vw;
     padding-left: 1vw;
     position: relative;
     transform: translateX(-100%);
@@ -739,41 +747,46 @@ body {
 
 .numero-item {
     text-align: center;
-    flex: 0 0 auto;
-    min-width: 20vw;
-    position: relative;
-    height: 22vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .numero {
-    font-size: 10vh;
+    color: rgba(255, 255, 255, 0.90);
+    font-family: Poppins;
+    font-size: 88px;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 10vh;
-    margin-bottom: 1vh;
-    min-height: 10vh;
-    display: block;
-    width: 100%;
-    text-align: center;
+    line-height: normal;
+    margin-bottom: -10px;
+    order: 1;
+}
+
+.numero::before {
+    content: "+";
+    display: inline-block;
 }
 
 .numero-titulo {
-    font-size: 3.2vh;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 3.2vh;
+    color: rgba(255, 255, 255, 0.90);
+    font-family: Poppins;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: normal;
     white-space: nowrap;
-    position: absolute;
-    bottom: 3vh;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    text-align: center;
-    pointer-events: none;
+    margin-top: 16px;
+    order: 3;
+}
+
+.numero-item::before {
+    content: '';
+    display: block;
+    width: 180px;
+    height: 2px;
+    background-color: #FF9E48;
+    margin: 0;
+    order: 2;
 }
 
 @media (max-width: 1400px) {
@@ -871,6 +884,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    padding: 30px;
+    border-radius: 15px;
 }
 
 .form-group {
@@ -888,12 +903,15 @@ body {
     line-height: 128%;
 }
 
+
 .form-group input,
 .form-group textarea {
     width: 520px;
     background: rgba(255, 255, 255, 0.35);
     border: none;
-    border-radius: 25px;
+    border-radius: 15px;
+    border-top: 1px solid rgba(194, 221, 246, 0.80);
+    border-left: 1px solid rgba(194, 221, 246, 0.80);
     padding: 1rem;
     color: rgba(255, 255, 255, 0.9);
     font-size: 18px;
@@ -908,6 +926,7 @@ body {
     font-weight: 500;
     line-height: 128%;
 }
+
 
 .form-group textarea {
     height: 140px;
@@ -1142,11 +1161,11 @@ body {
 /* Logos decorativas */
 .logo-decorativa-1 {
     position: absolute;
-    left: -250px;
+    left: -450px;
     top: 1%;
     transform: translateY(-50%);
-    width: 250px;
-    height: 250px;
+    width: 350px;
+    height: 350px;
     z-index: 0;
     filter: blur(5px);
     opacity: 0.2;
@@ -1170,7 +1189,42 @@ body {
     bottom: -100px;
     width: 700px;
     height: 700px;
-    z-index: 0;
+    z-index: 1;
     filter: blur(8px);
     opacity: 0.15;
+}
+
+.footer-btn {
+    display: inline-flex;
+    margin-left: 6px;
+    padding: 16px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    border-radius: 8px;
+    border-top: 0.8px solid rgba(255, 243, 232, 0.7);
+    border-left: 0.8px solid rgba(255, 243, 232, 0.70);
+    background: rgba(53, 125, 183, 0.60);
+    box-shadow: -3px -3px 6px 0px rgba(255, 255, 255, 0.20), 3px 3px 6px 0px rgba(9, 67, 114, 0.25);
+    color: rgba(255, 255, 255, 0.90);
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 16px;
+    text-decoration: none;
+    min-width: 180px;
+    transition: all 0.3s ease;
+    border-right: none;
+    border-bottom: none;
+}
+
+.footer-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(73, 145, 203, 0.70);
+    box-shadow: -4px -4px 8px 0px rgba(255, 255, 255, 0.12), 4px 4px 8px 0px rgba(9, 67, 114, 0.30);
+}
+
+.footer-btn i {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.90);
 } 
