@@ -1,248 +1,371 @@
-// Função para mudar o header quando rolar a página
-function initHeader() {
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('.header');
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-}
+/**
+ * CLINIC - Sistema para Gestão de Clínicas e Hospitais
+ * Arquivo principal JavaScript
+ * Versão: 2.0.0
+ */
 
-// Função para suavizar o scroll dos links do menu
-function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-}
-
-// Função para controlar o conteúdo dinâmico dos recursos
-function initRecursos() {
-    const cards = document.querySelectorAll('.recurso-card');
-    const contents = document.querySelectorAll('.recurso-content');
-
-    cards.forEach(card => {
-        card.addEventListener('click', () => {
-            // Remove active de todos os cards
-            cards.forEach(c => c.setAttribute('data-active', 'false'));
-            // Adiciona active ao card clicado
-            card.setAttribute('data-active', 'true');
-
-            // Esconde todos os conteúdos
-            contents.forEach(content => content.classList.remove('active'));
-            
-            // Mostra o conteúdo correspondente
-            const recursoId = card.getAttribute('data-recurso');
-            if (recursoId) {
-                const content = document.getElementById(`${recursoId}-content`);
-                if (content) {
-                    content.classList.add('active');
-                }
-            }
-        });
-    });
-}
-
-// Função para animar os números
-function initNumeros() {
-    const numeros = document.querySelectorAll('.numero');
-    const numerosContent = document.querySelector('.numeros-content');
-    const numerosTitle = document.querySelector('.numeros-title');
-    
-    // Observador para o container dos números
-    const numerosObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                console.log('Container visível - adicionando slide-in');
-                numerosContent.classList.add('slide-in');
-                numerosTitle.classList.add('slide-in');
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    });
-    
-    if (numerosContent) {
-        console.log('Iniciando observador do container');
-        numerosObserver.observe(numerosContent);
-    } else {
-        console.error('Container não encontrado');
+class ClinicApp {
+    constructor() {
+        this._scrollPosition = 0;
+        this._isScrolling = false;
+        this._logoAnimationId = null;
+        this.init();
     }
-    
-    // Observador para os números individuais
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const numero = entry.target;
-                const valor = parseInt(numero.textContent);
-                let atual = 0;
-                const incremento = valor / 200;
-                const duracao = 2000;
-                const intervalo = duracao / 200;
-                
-                const animacao = setInterval(() => {
-                    atual += incremento;
-                    if (atual >= valor) {
-                        numero.textContent = valor;
-                        clearInterval(animacao);
-                    } else {
-                        numero.textContent = Math.floor(atual);
-                    }
-                }, intervalo);
-                
-                observer.unobserve(numero);
+
+    init() {
+        this.cacheElements();
+        this.initHeader();
+        this.initSmoothScroll();
+        this.initRecursos();
+        this.initNumeros();
+        this.initContato();
+        this.initLogosCarousel();
+        this.initIntersectionObservers();
+        this.addEventListeners();
+        this.setupA11y();
+    }
+
+    cacheElements() {
+        this.elements = {
+            header: document.querySelector('.header'),
+            navLinks: document.querySelectorAll('a[href^="#"]'),
+            recursoCards: document.querySelectorAll('.recurso-card'),
+            recursoContents: document.querySelectorAll('.recurso-content'),
+            numeros: document.querySelectorAll('.numero'),
+            contatoForm: document.querySelector('.contato-form'),
+            logosTrack: document.querySelector('.logos-track'),
+            fadeElements: document.querySelectorAll('.fade-in')
+        };
+    }
+
+    initHeader() {
+        if (!this.elements.header) return;
+
+        const handleScroll = () => {
+            const currentScroll = window.scrollY;
+            
+            // Apenas atualiza se a posição mudou significativamente
+            if (Math.abs(currentScroll - this._scrollPosition) > 5) {
+                this.elements.header.classList.toggle('scrolled', currentScroll > 50);
+                this._scrollPosition = currentScroll;
+            }
+            
+            this._isScrolling = false;
+        };
+
+        window.addEventListener('scroll', () => {
+            if (!this._isScrolling) {
+                window.requestAnimationFrame(handleScroll);
+                this._isScrolling = true;
             }
         });
-    }, {
-        threshold: 0.5
-    });
-    
-    numeros.forEach(numero => observer.observe(numero));
-}
 
-// Função para sanitizar inputs
-function sanitizeInput(input) {
-    return input.replace(/[<>]/g, ''); // Remove tags HTML
-}
+        // Estado inicial
+        handleScroll();
+    }
 
-// Função para validar email
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
+    initSmoothScroll() {
+        this.elements.navLinks.forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = anchor.getAttribute('href');
+                const target = document.querySelector(targetId);
+                
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Atualiza a URL sem recarregar a página
+                    history.pushState(null, null, targetId);
+                }
+            });
+        });
+    }
 
-// Função para validar telefone
-function isValidPhone(phone) {
-    const phoneRegex = /^\+?[\d\s-()]{10,}$/;
-    return phoneRegex.test(phone);
-}
+    initRecursos() {
+        const cards = document.querySelectorAll('.recurso-card');
+        const contents = document.querySelectorAll('.recurso-content');
 
-// Função para o formulário de contato com validações
-function initContato() {
-    const form = document.querySelector('.contato-form');
-    if (!form) return;
-    
-    let lastSubmission = 0;
-    const SUBMISSION_DELAY = 2000; // 2 segundos entre envios
-    
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const now = Date.now();
-        if (now - lastSubmission < SUBMISSION_DELAY) {
-            alert('Por favor, aguarde alguns segundos antes de enviar novamente.');
-            return;
-        }
-        
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
-        
-        // Validações de segurança
-        if (!data.nome || !data.email || !data.telefone || !data.assunto || !data.mensagem) {
-            alert('Por favor, preencha todos os campos.');
-            return;
-        }
-        
-        if (!isValidEmail(data.email)) {
-            alert('Por favor, insira um email válido.');
-            return;
-        }
-        
-        if (!isValidPhone(data.telefone)) {
-            alert('Por favor, insira um telefone válido.');
-            return;
-        }
-        
-        // Sanitiza os inputs
-        const sanitizedData = {
-            nome: sanitizeInput(data.nome),
-            email: sanitizeInput(data.email),
-            telefone: sanitizeInput(data.telefone),
-            assunto: sanitizeInput(data.assunto),
-            mensagem: sanitizeInput(data.mensagem)
+        const showContent = (recursoId) => {
+            this.elements.recursoContents.forEach(content => {
+                content.classList.toggle('active', content.id === `${recursoId}-content`);
+            });
         };
-        
-        // Adiciona token CSRF (deve ser gerado pelo backend)
-        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content;
-        if (!csrfToken) {
-            console.error('Token CSRF não encontrado');
-            return;
+
+        this.elements.recursoCards.forEach(card => {
+            // Mouse/Toque
+            card.addEventListener('click', () => {
+                this.elements.recursoCards.forEach(c => c.setAttribute('data-active', 'false'));
+                card.setAttribute('data-active', 'true');
+                showContent(card.dataset.recurso);
+            });
+
+            // Teclado
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    card.click();
+                }
+            });
+        });
+
+        // Ativar o primeiro card por padrão
+        if (this.elements.recursoCards[0]) {
+            this.elements.recursoCards[0].click();
         }
-        
-        const btn = form.querySelector('button');
-        const originalText = btn.textContent;
-        btn.textContent = 'Enviando...';
-        btn.disabled = true;
-        
-        lastSubmission = now;
-        
-        // Aqui você deve enviar os dados para uma API segura usando HTTPS
-        console.log('Dados sanitizados:', sanitizedData);
-        
-        setTimeout(() => {
-            btn.textContent = 'Enviado!';
-            form.reset();
+    }
+
+    initNumeros() {
+        const numerosSection = document.querySelector('.numeros');
+        if (!numerosSection) return;
+    
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const title = entry.target.querySelector('.numeros-title');
+                    const content = entry.target.querySelector('.numeros-content');
+                    
+                    if (title) title.classList.add('slide-in');
+                    if (content) content.classList.add('slide-in');
+                    
+                    // Animação dos números
+                    this.animateNumbers();
+                    
+                    // Para de observar após a animação
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { 
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        });
+    
+        observer.observe(numerosSection);
+    }
+
+    animateNumbers() {
+        this.elements.numeros.forEach(numero => {
+            const target = +numero.textContent.replace('+', '');
+            const duration = 2000;
+            const startTime = performance.now();
+
+            const animate = (currentTime) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const value = Math.floor(progress * target);
+                
+                numero.textContent = value;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                }
+            };
+
+            requestAnimationFrame(animate);
+        });
+    }
+
+    initContato() {
+        if (!this.elements.contatoForm) return;
+
+        this.elements.contatoForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(this.elements.contatoForm);
+            const data = Object.fromEntries(formData);
+            const btn = this.elements.contatoForm.querySelector('button');
+
+            // Validação
+            if (!this.validateForm(data)) return;
+
+            btn.disabled = true;
+            btn.textContent = 'Enviando...';
             
-            setTimeout(() => {
-                btn.textContent = originalText;
+            try {
+                // Simulação de envio (substituir por chamada real)
+                await this.sendFormData(data);
+                
+                this.elements.contatoForm.reset();
+                this.showFeedback('Formulário enviado com sucesso!', 'success');
+            } catch (error) {
+                console.error('Erro no formulário:', error);
+                this.showFeedback('Erro ao enviar formulário', 'error');
+            } finally {
                 btn.disabled = false;
-            }, 2000);
-        }, 1500);
-    });
+                btn.textContent = 'Enviar formulário';
+            }
+        });
+    }
+
+    validateForm(data) {
+        let isValid = true;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^\+?[\d\s-()]{10,}$/;
+
+        // Validação básica
+        if (!data.nome || data.nome.trim().length < 3) {
+            this.showFeedback('Nome deve ter pelo menos 3 caracteres', 'error');
+            isValid = false;
+        }
+
+        if (!emailRegex.test(data.email)) {
+            this.showFeedback('Por favor, insira um e-mail válido', 'error');
+            isValid = false;
+        }
+
+        if (!phoneRegex.test(data.telefone)) {
+            this.showFeedback('Telefone inválido', 'error');
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    async sendFormData(data) {
+        // Simula uma requisição assíncrona
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                console.log('Dados do formulário:', data);
+                resolve();
+            }, 1500);
+        });
+    }
+
+    initLogosCarousel() {
+        if (!this.elements.logosTrack) return;
+
+        const config = {
+            speed: 1,
+            direction: -1,
+            isPaused: false,
+            position: 0
+        };
+
+        const animate = () => {
+            if (config.isPaused) {
+                this._logoAnimationId = requestAnimationFrame(animate);
+                return;
+            }
+            
+            config.position += config.speed * config.direction;
+            this.elements.logosTrack.style.transform = `translateX(${config.position}px)`;
+            
+            // Reset para loop infinito
+            if (Math.abs(config.position) >= this.elements.logosTrack.scrollWidth / 2) {
+                config.position = 0;
+            }
+            
+            this._logoAnimationId = requestAnimationFrame(animate);
+        };
+
+        // Controles de interação
+        this.elements.logosTrack.addEventListener('mouseenter', () => {
+            config.isPaused = true;
+        });
+
+        this.elements.logosTrack.addEventListener('mouseleave', () => {
+            config.isPaused = false;
+        });
+
+        // Touch events
+        this.elements.logosTrack.addEventListener('touchstart', () => {
+            config.isPaused = true;
+        });
+
+        this.elements.logosTrack.addEventListener('touchend', () => {
+            config.isPaused = false;
+        });
+
+        // Iniciar animação
+        animate();
+    }
+
+    initIntersectionObservers() {
+        if (!this.elements.fadeElements.length) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        this.elements.fadeElements.forEach(el => observer.observe(el));
+    }
+
+    addEventListeners() {
+        window.addEventListener('resize', this.handleResize.bind(this));
+    }
+
+    handleResize() {
+        // Ajustes para diferentes tamanhos de tela
+        if (window.innerWidth < 768) {
+            // Ações específicas para mobile
+        }
+    }
+
+    setupA11y() {
+        // Melhorias de acessibilidade
+        document.body.classList.add('js-enabled');
+        
+        // Foco visível para elementos interativos
+        document.addEventListener('keyup', (e) => {
+            if (e.key === 'Tab') {
+                document.documentElement.classList.add('tabbing');
+            }
+        });
+
+        document.addEventListener('mousedown', () => {
+            document.documentElement.classList.remove('tabbing');
+        });
+    }
+
+    showFeedback(message, type = 'success') {
+        // Remove feedback existente
+        const existingFeedback = document.querySelector('.feedback-message');
+        if (existingFeedback) {
+            existingFeedback.remove();
+        }
+
+        // Cria novo elemento de feedback
+        const feedback = document.createElement('div');
+        feedback.className = `feedback-message feedback-${type}`;
+        feedback.textContent = message;
+        feedback.setAttribute('role', 'alert');
+        feedback.setAttribute('aria-live', 'polite');
+
+        document.body.appendChild(feedback);
+
+        // Remove automaticamente após 5 segundos
+        setTimeout(() => {
+            feedback.classList.add('fade-out');
+            setTimeout(() => feedback.remove(), 300);
+        }, 5000);
+    }
+
+    cleanup() {
+        // Limpeza de recursos
+        if (this._logoAnimationId) {
+            cancelAnimationFrame(this._logoAnimationId);
+        }
+    }
 }
 
-// Função para controlar a rolagem das logos
-function initLogosScroll() {
-    const track = document.querySelector('.logos-track');
-    if (!track) return;
-
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-    let animationFrame;
-
-    track.addEventListener('mousedown', (e) => {
-        isDown = true;
-        track.style.animation = 'none';
-        startX = e.pageX - track.offsetLeft;
-        scrollLeft = track.scrollLeft;
-    });
-
-    track.addEventListener('mouseleave', () => {
-        isDown = false;
-        track.style.animation = 'slide 30s linear infinite';
-    });
-
-    track.addEventListener('mouseup', () => {
-        isDown = false;
-        track.style.animation = 'slide 30s linear infinite';
-    });
-
-    track.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - track.offsetLeft;
-        const walk = (x - startX) * 2;
-        track.style.transform = `translateY(-50%) translateX(${walk}px)`;
-    });
+// Inicialização segura
+if (document.readyState !== 'loading') {
+    initializeApp();
+} else {
+    document.addEventListener('DOMContentLoaded', initializeApp);
 }
 
-// Inicializa todas as funcionalidades
-document.addEventListener('DOMContentLoaded', () => {
-    initHeader();
-    initSmoothScroll();
-    initRecursos();
-    initNumeros();
-    initContato();
-    initLogosScroll();
-}); 
+function initializeApp() {
+    const app = new ClinicApp();
+
+    // Expor para debug se necessário
+    if (process.env.NODE_ENV === 'development') {
+        window.ClinicApp = app;
+    }
+}
